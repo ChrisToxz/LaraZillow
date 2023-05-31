@@ -1,11 +1,12 @@
 <script setup>
-
 </script>
 
 <template>
-  asdasdasdasd
+  Shows
 </template>
 
 <script>
-export default {}
+export default {
+}
 </script>
+
