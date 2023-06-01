@@ -16,7 +16,7 @@ const form = useForm({
 </script>
 
 <template>
-  <form @submit.prevent="form.post('/listing', form)">
+  <form @submit.prevent="form.post(route('listing.store'), form)">
     <div>
       <div>
         <label>Beds</label>

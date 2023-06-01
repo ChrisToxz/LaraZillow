@@ -6,6 +6,8 @@ import MainLayout from '@/Layouts/MainLayout.vue'
 import { ZiggyVue } from 'ziggy'
 import { Ziggy } from './ziggy'
 
+import '../css/app.css'
+
 import NProgress from 'nprogress'
 import { router } from '@inertiajs/vue3'
 router.on('start', () => NProgress.start())

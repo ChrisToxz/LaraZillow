@@ -20,7 +20,7 @@ const form = useForm({
 </script>
 
 <template>
-  <form @submit.prevent="form.put(`/listing/${props.listing.id}`, form)">
+  <form @submit.prevent="form.put(route('listing.update', listing.id), form)">
     <div>
       <div>
         <label>Beds</label>
