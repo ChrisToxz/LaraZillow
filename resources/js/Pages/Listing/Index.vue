@@ -16,7 +16,7 @@ defineProps({
     <Box v-for="listing in listings" :key="listing.id">
       <div>
         <Link :href="route('listing.show', listing.id)">
-          <Price :price="listing.price" class="font-bold" />
+          <Price :price="listing.price" class="text-2xl font-bold" />
           <ListingSpace :listing="listing" class="text-lg" />
           <ListingAddress :listing="listing" class="text-gray-400" />
         </Link>
