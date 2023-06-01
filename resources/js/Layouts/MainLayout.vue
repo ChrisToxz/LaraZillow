@@ -6,20 +6,14 @@ const flashSuccess = computed(
   () => usePage().props.flash.success,
 )
 
-const test = computed(
-  () => usePage().props.test,
-)
 </script>
 
 <template>
-  <Link href="/">Main</Link> -
-  <Link href="/show">Show</Link> -
   <Link href="/listing">Listings</Link> -
-  <Link href="/listing/create">Create</Link>
+  <Link href="/listing/create">New Listing</Link>
   <div v-if="flashSuccess" class="success">
     {{ flashSuccess }}
   </div>
-  {{ test }}
   <slot />
 </template>
 
