@@ -1,18 +1,35 @@
 <script setup>
-import {Link} from '@inertiajs/vue3'
-import {ref} from 'vue'
+import { computed } from 'vue'
+import {Link, usePage} from '@inertiajs/vue3'
 
-const timer = ref(0)
-setInterval(() => timer.value++, 1000)
+const flashSuccess = computed(
+  () => usePage().props.flash.success,
+)
+
+const test = computed(
+  () => usePage().props.test,
+)
 </script>
 
 <template>
   <Link href="/">Main</Link> -
-  <Link href="/show">Show</Link>
-  <div>The page with time {{ timer }}</div>
+  <Link href="/show">Show</Link> -
+  <Link href="/listing">Listings</Link> -
+  <Link href="/listing/create">Create</Link>
+  <div v-if="flashSuccess" class="success">
+    {{ flashSuccess }}
+  </div>
+  {{ test }}
   <slot />
 </template>
 
 <script>
 export default {}
 </script>
+
+<style scoped>
+.success {
+    background-color:green;
+    color:white;
+}
+</style>
