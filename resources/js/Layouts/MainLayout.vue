@@ -5,6 +5,8 @@ import {Link, usePage} from '@inertiajs/vue3'
 const flashSuccess = computed(
   () => usePage().props.flash.success,
 )
+
+
 </script>
 
 <template>
@@ -18,7 +20,7 @@ const flashSuccess = computed(
           <Link :href="route('listing.index')">LaraZillow</Link>
         </div>
         <div>
-          <Link :href="route('listing.create')" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium p-2 rounded-md">+ New Listing</Link>
+          <Link :href="route('listing.create')" class="btn-indigo">+ New Listing</Link>
         </div>
       </nav>
     </div>
@@ -33,5 +35,6 @@ const flashSuccess = computed(
 </template>
 
 <script>
+
 export default {}
 </script>
