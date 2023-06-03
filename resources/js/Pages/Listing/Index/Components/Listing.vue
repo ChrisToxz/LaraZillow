@@ -19,8 +19,7 @@ const { monthlyPayment } = useMonthlyPayment(
         <div class="flex items-center gap-1">
           <Price :price="listing.price" class="text-2xl font-bold" />
           <div class="text-xs text-gray-500">
-            <Price :price="monthlyPayment" />
-            pm
+            <Price :price="monthlyPayment" />pm
           </div>
         </div>
         <ListingSpace :listing="listing" class="text-lg" />

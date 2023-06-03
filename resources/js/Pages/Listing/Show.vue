@@ -4,6 +4,7 @@ import ListingSpace from '@/Components/UI/ListingSpace.vue'
 import Price from '@/Components/Price.vue'
 import Box from '@/Components/UI/Box.vue'
 import {ref} from 'vue'
+import {useMonthlyPayment} from '../../Composables/useMonthlyPayment.js'
 
 
 const interestRate = ref(2.5)
@@ -13,6 +14,8 @@ const props = defineProps({
   listing: Object,
 },
 )
+const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
+  props.listing.price, interestRate, duration)
 </script>
 <template>
   <div class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4">
@@ -28,7 +31,7 @@ const props = defineProps({
       </Box>
       <Box>
         <template #header>Monthly Payment</template>
-        <div class="test">
+        <div>
           <label class="label"> Interest rate ({{ interestRate }})</label>
           <input
             v-model.number="interestRate"
@@ -42,9 +45,45 @@ const props = defineProps({
             class="w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
           />
 
-          <div class="text-gray-600 dark:text-gray-300 mt-2" />
-          <div class="text-gray-400">Your monthly payment</div>
-          <Price :price="monthlyPayment" class="text-3xl" />
+          <div class="text-gray-600 dark:text-gray-300 mt-2">
+            <div class="text-gray-400">Your monthly payment</div>
+            <Price :price="monthlyPayment" class="text-3xl" />
+          </div>
+
+          <div class="mt-2 text-gray-500">
+            <div class="flex justify-between">
+              <div>
+                Total paid
+              </div>
+              <div>
+                <div><Price :price="totalPaid" class="font-medium" /></div>
+              </div>
+            </div>
+            <div class="flex justify-between">
+              <div>
+                Principal paid
+              </div>
+              <div>
+                <div><Price :price="listing.price" class="font-medium" /></div>
+              </div>
+            </div>
+            <div class="flex justify-between">
+              <div>
+                Interest paid
+              </div>
+              <div>
+                <div><Price :price="totalInterest" class="font-medium" /></div>
+              </div>
+            </div>
+          </div>
+          <!--          <div class="text-gray-600 dark:text-gray-300 mt-2">-->
+          <!--            <div class="text-gray-400">Your monthly payment</div>-->
+          <!--            <Price :price="totalPaid" class="text-3xl" />-->
+          <!--          </div>-->
+          <!--          <div class="text-gray-600 dark:text-gray-300 mt-2">-->
+          <!--            <div class="text-gray-400">Your monthly payment</div>-->
+          <!--            <Price :price="totalInterest" class="text-3xl" />-->
+          <!--          </div>-->
         </div>
       </Box>
     </div>
