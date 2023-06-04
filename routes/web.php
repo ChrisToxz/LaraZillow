@@ -24,3 +24,7 @@ Route::delete('logout', [\App\Http\Controllers\AuthController::class, 'destroy']
 
 //Route::get('register', [\App\Http\Controllers\UserAccountController::class, 'create'])->name('register');
 Route::resource('user', \App\Http\Controllers\UserAccountController::class);
+
+Route::prefix('realtor')->name('realtor.')->middleware('auth')->group(function () {
+    Route::resource('listing', \App\Http\Controllers\RealtorListingController::class);
+});
