@@ -27,4 +27,17 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $e)
+    {
+        $response = parent::render($request, $e);
+
+        if ($response->status() === 419) {
+            return back()->with([
+                'error' => 'The page expired, please try again.',
+            ]);
+        }
+
+        return $response;
+    }
 }
