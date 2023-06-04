@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
@@ -11,6 +12,8 @@ class ListingController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('index', 'show');
+
+        $this->authorizeResource(Listing::class, 'listing');
     }
 
     /**
@@ -20,7 +23,7 @@ class ListingController extends Controller
     {
         return inertia('Listing/Index',
             [
-                'listings' => Listing::all()
+                'listings' => Listing::orderByDesc('created_at')->paginate(10)
             ]);
     }
 
@@ -37,7 +40,8 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-        Listing::create($request->validate([
+
+        $request->user()->listings()->create($request->validate([
             'beds' => 'required|integer|min:0|max:20',
             'baths' => 'required|integer|min:0|max:20',
             'area' => 'required|integer|min:15|max:1500',
@@ -58,6 +62,8 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
+
+
         return inertia('Listing/Show',
             [
                 'listing' => $listing
