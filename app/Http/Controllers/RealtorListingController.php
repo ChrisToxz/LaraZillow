@@ -22,7 +22,7 @@ class RealtorListingController extends Controller
         ];
         return inertia('Realtor/Index', [
             'filters' => $filters,
-            'listings' => \Auth::user()->listings()->filter($filters)->paginate(5)->withQueryString()
+            'listings' => \Auth::user()->listings()->filter($filters)->paginate(10)->withQueryString()
         ]);
     }
 
@@ -94,5 +94,12 @@ class RealtorListingController extends Controller
         $listing->deleteOrFail();
         return redirect()->back()
             ->with('success', 'Listing have been deleted!');
+    }
+
+    public function restore(Listing $listing)
+    {
+        $listing->restore();
+        return redirect()->back()
+            ->with('success', 'Listing have been restored!');
     }
 }
