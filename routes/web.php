@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\IndexController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\ListingController::class, 'index']);
 Route::get('/show', [\App\Http\Controllers\IndexController::class, 'show'])->middleware('auth');
 
-Route::resource('listing', \App\Http\Controllers\ListingController::class);
+Route::resource('listing', \App\Http\Controllers\ListingController::class)->except('destroy');
 
 Route::get('login', [\App\Http\Controllers\AuthController::class, 'create'])->name('login');
 Route::post('login', [\App\Http\Controllers\AuthController::class, 'store'])->name('login.store');
@@ -26,5 +26,5 @@ Route::delete('logout', [\App\Http\Controllers\AuthController::class, 'destroy']
 Route::resource('user', \App\Http\Controllers\UserAccountController::class);
 
 Route::prefix('realtor')->name('realtor.')->middleware('auth')->group(function () {
-    Route::resource('listing', \App\Http\Controllers\RealtorListingController::class);
+    Route::resource('listing', \App\Http\Controllers\RealtorListingController::class)->only(['index', 'destroy']);
 });

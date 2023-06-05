@@ -26,7 +26,7 @@ defineProps({listings: Object})
         <div class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
           <Link class="btn-outline text-xs font-medium">Preview</Link>
           <Link class="btn-outline text-xs font-medium">Edit</Link>
-          <Link class="btn-outline text-xs font-medium">Delete</Link>
+          <Link class="btn-outline text-xs font-medium" :href="route('realtor.listing.destroy', listing.id)" method="delete" as="button">Delete</Link>
         </div>
       </div>
     </Box>
