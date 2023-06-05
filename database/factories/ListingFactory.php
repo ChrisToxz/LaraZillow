@@ -17,14 +17,15 @@ class ListingFactory extends Factory
     public function definition(): array
     {
         return [
-            'beds' => fake()->numberBetween(1,7),
-            'baths' => fake()->numberBetween(1,3),
-            'area' => fake()->numberBetween(30,400),
+            'beds' => fake()->numberBetween(1, 7),
+            'baths' => fake()->numberBetween(1, 3),
+            'area' => fake()->numberBetween(30, 400),
             'city' => fake()->city(),
             'code' => fake()->postcode(),
             'street' => fake()->streetName(),
-            'street_nr' => fake()->numberBetween(1,500),
-            'price' => fake()->numberBetween(50_000,2_000_000)
+            'street_nr' => fake()->numberBetween(1, 500),
+            'price' => fake()->numberBetween(50_000, 2_000_000),
+            'created_at' => fake()->dateTimeBetween("-1 day", now())
         ];
     }
 }
