@@ -25,20 +25,26 @@ defineProps({listings: Object, filters: Object})
           </div>
           <ListingAddress :listing="listing" class="text-gray-500" />
         </div>
-        <div class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
-          <Link class="btn-outline text-xs font-medium" :href="route('listing.show', listing.id)">Preview</Link>
-          <Link
-            class="btn-outline text-xs font-medium" :href="route('realtor.listing.edit', listing.id)"
-          >
-            Edit
-          </Link>
-          <Link v-if="!listing.deleted_at" class="btn-outline text-xs font-medium hover:bg-red-200" :href="route('realtor.listing.destroy', listing.id)" method="delete" as="button">
-            Delete
-          </Link>
-          <Link v-else class="btn-outline text-xs font-medium hover:bg-green-200" :href="route('realtor.listing.restore', {listing: listing.id})" method="put" as="button">
-            Restore
-          </Link>
-        </div>
+        <section>
+          <div class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
+            <Link class="btn-outline text-xs font-medium" :href="route('listing.show', listing.id)">Preview</Link>
+            <Link
+              class="btn-outline text-xs font-medium" :href="route('realtor.listing.edit', listing.id)"
+            >
+              Edit
+            </Link>
+            <Link v-if="!listing.deleted_at" class="btn-outline text-xs font-medium hover:bg-red-200" :href="route('realtor.listing.destroy', listing.id)" method="delete" as="button">
+              Delete
+            </Link>
+            <Link v-else class="btn-outline text-xs font-medium hover:bg-green-200" :href="route('realtor.listing.restore', {listing: listing.id})" method="put" as="button">
+              Restore
+            </Link>
+          </div>
+
+          <div class="mt-2">
+            <Link :href="route('realtor.listing.image.create', {listing: listing.id})" class="block w-full btn-outline text-sm font-medium text-center">Images ( {{ listing.images_count }} )</Link>
+          </div>
+        </section>
       </div>
     </Box>
   </section>

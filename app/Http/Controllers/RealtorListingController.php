@@ -22,7 +22,7 @@ class RealtorListingController extends Controller
         ];
         return inertia('Realtor/Index', [
             'filters' => $filters,
-            'listings' => \Auth::user()->listings()->filter($filters)->paginate(10)->withQueryString()
+            'listings' => \Auth::user()->listings()->filter($filters)->withCount('images')->paginate(10)->withQueryString()
         ]);
     }
 
