@@ -43,6 +43,7 @@ defineProps({listings: Object, filters: Object})
 
           <div class="mt-2">
             <Link :href="route('realtor.listing.image.create', {listing: listing.id})" class="block w-full btn-outline text-sm font-medium text-center">Images ( {{ listing.images_count }} )</Link>
+            <Link :href="route('realtor.listing.show', {listing: listing.id})" class="block w-full btn-outline text-sm font-medium text-center mt-2">Offers ( {{ listing.offers_count }} )</Link>
           </div>
         </section>
       </div>
