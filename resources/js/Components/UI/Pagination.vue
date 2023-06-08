@@ -7,7 +7,7 @@ defineProps({links: Array})
 
 <template>
   <div class="flex gap-1">
-    <template v-if="links.length > 3">
+    <template v-if="links.length">
       <template v-for="(link, index) in links">
         <Link
           v-if="link.url"

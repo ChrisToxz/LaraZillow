@@ -23,7 +23,7 @@ return new class extends Migration {
 
             $table->unsignedInteger('price');
 
-            $table->foreignIdFor(\App\Models\User::class)->constrained('users');
+            $table->foreignIdFor(\App\Models\User::class)->constrained();
 
             $table->timestamps();
         });
