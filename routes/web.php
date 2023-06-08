@@ -30,6 +30,9 @@ Route::resource('listing.offer', \App\Http\Controllers\ListingOfferController::c
 Route::prefix('realtor')->name('realtor.')->middleware('auth')->group(function () {
     Route::put('listing/{listing}/restore', [\App\Http\Controllers\RealtorListingController::class, 'restore'])->name('listing.restore')->withTrashed();
     Route::resource('listing', \App\Http\Controllers\RealtorListingController::class)->withTrashed();
+
+    Route::name('offer.accept')->put('offer/{offer}/accept', \App\Http\Controllers\RealtorListingAcceptOfferController::class);
+
     Route::resource('listing.image', \App\Http\Controllers\RealtorListingImageController::class)->only('create', 'store', 'destroy');
 });
 

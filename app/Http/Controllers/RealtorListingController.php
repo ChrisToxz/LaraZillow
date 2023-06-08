@@ -22,7 +22,12 @@ class RealtorListingController extends Controller
         ];
         return inertia('Realtor/Index', [
             'filters' => $filters,
-            'listings' => \Auth::user()->listings()->filter($filters)->withCount('images')->withCount('offers')->paginate(10)->withQueryString()
+            'listings' => \Auth::user()
+                ->listings()
+                ->filter($filters)
+                ->withCount('images', 'offers')
+                ->paginate(10)
+                ->withQueryString()
         ]);
     }
 
@@ -31,7 +36,7 @@ class RealtorListingController extends Controller
         return inertia(
             'Realtor/Show',
             [
-                'listing' => $listing->load('offers')
+                'listing' => $listing->load('offers', 'offers.bidder')
             ]);
     }
 

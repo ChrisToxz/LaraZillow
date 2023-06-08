@@ -26,6 +26,8 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
 const user = computed(
   () => usePage().props.user,
 )
+
+
 </script>
 <template>
   <div class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4">
