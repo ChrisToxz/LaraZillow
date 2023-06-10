@@ -21,7 +21,10 @@ Route::resource('listing', \App\Http\Controllers\ListingController::class)->only
 Route::get('login', [\App\Http\Controllers\AuthController::class, 'create'])->name('login');
 Route::post('login', [\App\Http\Controllers\AuthController::class, 'store'])->name('login.store');
 Route::delete('logout', [\App\Http\Controllers\AuthController::class, 'destroy'])->name('logout');
+
 Route::resource('notification', \App\Http\Controllers\NotificationController::class)->middleware('auth')->only('index');
+Route::put('notification/{notification}/seen', \App\Http\Controllers\NotificationSeenController::class)->middleware('auth')->name('notification.seen');
+
 //Route::get('register', [\App\Http\Controllers\UserAccountController::class, 'create'])->name('register');
 Route::resource('user', \App\Http\Controllers\UserAccountController::class);
 
