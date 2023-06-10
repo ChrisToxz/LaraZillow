@@ -2,9 +2,10 @@
 
 
 if tasklist.exe | grep -q "docker"; then
-    echo docker already running
+    echo Docker already running
 else
-    '/mnt/c/Program Files/Docker/Docker/Docker Desktop.exe'
+    echo Starting Docker!
+    '/mnt/c/Program Files/Docker/Docker/Docker Desktop.exe'&
 fi
 
 
